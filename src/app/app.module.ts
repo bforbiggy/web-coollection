@@ -20,7 +20,7 @@ const routes: Routes = [
 		BlobliquidfollowComponent,
 		LandingComponent,
 		SnowflakesComponent,
-  FlakeComponent,
+  	FlakeComponent,
 	],
 	imports: [BrowserModule, RouterModule.forRoot(routes)],
 	exports: [RouterModule],

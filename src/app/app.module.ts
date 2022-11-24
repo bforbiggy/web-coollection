@@ -3,16 +3,23 @@ import { BrowserModule } from "@angular/platform-browser";
 import { Routes, RouterModule } from "@angular/router";
 
 import { AppComponent } from "./app.component";
-import { BlobliquidfollowComponent } from "./blobliquidfollow/blobliquidfollow.component";
 import { LandingComponent } from "./landing/landing.component";
 
+import { SnowflakesComponent } from "./snowflakes/snowflakes.component";
+import { BlobliquidfollowComponent } from "./blobliquidfollow/blobliquidfollow.component";
 const routes: Routes = [
 	{ path: "", component: LandingComponent },
+	{ path: "snowflakes", component: SnowflakesComponent },
 	{ path: "blobliquidfollow", component: BlobliquidfollowComponent },
 ];
 
 @NgModule({
-	declarations: [AppComponent, BlobliquidfollowComponent, LandingComponent],
+	declarations: [
+		AppComponent,
+		BlobliquidfollowComponent,
+		LandingComponent,
+		SnowflakesComponent,
+	],
 	imports: [BrowserModule, RouterModule.forRoot(routes)],
 	exports: [RouterModule],
 	providers: [],

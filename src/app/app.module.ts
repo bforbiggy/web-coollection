@@ -7,6 +7,7 @@ import { LandingComponent } from "./landing/landing.component";
 
 import { SnowflakesComponent } from "./snowflakes/snowflakes.component";
 import { BlobliquidfollowComponent } from "./blobliquidfollow/blobliquidfollow.component";
+import { FlakeComponent } from './snowflakes/flake/flake.component';
 const routes: Routes = [
 	{ path: "", component: LandingComponent },
 	{ path: "snowflakes", component: SnowflakesComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
 		BlobliquidfollowComponent,
 		LandingComponent,
 		SnowflakesComponent,
+  FlakeComponent,
 	],
 	imports: [BrowserModule, RouterModule.forRoot(routes)],
 	exports: [RouterModule],

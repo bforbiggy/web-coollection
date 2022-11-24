@@ -1,5 +1,5 @@
 import { Component, Input} from "@angular/core";
-import { FlakeData } from './FlakeData';
+import randomInteger from "random-int";
 
 @Component({
 	selector: "app-flake",
@@ -7,5 +7,11 @@ import { FlakeData } from './FlakeData';
 	styleUrls: ["./flake.component.scss"],
 })
 export class FlakeComponent {
-  @Input() flakeData?: FlakeData;
+	top: number;
+	left: number;
+	
+	constructor() {
+		this.top = randomInteger(0, 100);
+		this.left = randomInteger(0, 100);
+	}
 }

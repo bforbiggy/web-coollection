@@ -1,0 +1,30 @@
+.grid {
+	width: 100vw;
+	height: 100vh;
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	flex-shrink: 0;
+}
+
+.pixel {
+	box-sizing: border-box;
+	min-width: 1vw;
+	min-height: 1vw;
+	border: 1px solid black;
+}
+
+.blank {
+	background-color: white;
+}
+
+.marked {
+	background-color: black;
+}
+
+body {
+	margin: 0px;
+	padding: 0px;
+}

@@ -1,8 +1,8 @@
-const Blobliquidfollow = () => {
+const Carvendepict = () => {
 	return <iframe
 		id="content-iframe"
-		title="blobliquidfollow"
-		src="https://carve-and-depict.pages.dev"
+		title="Carve n' Depict"
+		src="./carvendepict/index.html"
 		width="100%"
 		height="100%"
 		style={{
@@ -16,8 +16,7 @@ const Blobliquidfollow = () => {
 			overflow: 'hidden',
 			height: '100%',
 		}}>
-
 	</iframe>
 };
 
-export default Blobliquidfollow;
+export default Carvendepict;

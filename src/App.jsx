@@ -1,15 +1,15 @@
 import './App.scss';
 import React from "react";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { HashRouter, Route, Routes, Navigate } from "react-router-dom";
 
 import Landing from "./landing/Landing";
 const Snowflakes = React.lazy(() => import("./snowflakes/Snowflakes"));
-const Blobliquidfollow = React.lazy(() => import("./blobliquidfollow/Blobliquidfollow"));
+const Blobliquidfollow = React.lazy(() => import("./sites/Blobliquidfollow"));
 
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route>
           <Route path="*" element={<Navigate to="/" />} />
@@ -18,7 +18,7 @@ function App() {
           <Route path="blobliquidfollow/" element={<Blobliquidfollow />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

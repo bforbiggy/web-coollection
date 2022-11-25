@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 import Landing from "./landing/Landing";
 const Snowflakes = React.lazy(() => import("./snowflakes/Snowflakes"));
+const Blobliquidfollow = React.lazy(() => import("./blobliquidfollow/Blobliquidfollow"));
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Route path="*" element={<Navigate to="/" />} />
           <Route index element={<Landing />} />
           <Route path="snowflakes/" element={<Snowflakes />} />
+          <Route path="blobliquidfollow/" element={<Blobliquidfollow />} />
         </Route>
       </Routes>
     </BrowserRouter>

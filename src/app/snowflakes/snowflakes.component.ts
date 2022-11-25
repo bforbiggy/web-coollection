@@ -6,5 +6,12 @@ import { Component } from "@angular/core";
   styleUrls: ["./snowflakes.component.scss"],
 })
 export class SnowflakesComponent{ 
-  flakeCount: number[] = Array(100);
+	flakeCount: number[];
+	
+	constructor() {
+		this.flakeCount = [];
+		for (let i = 0; i <= 100; i++) {
+			this.flakeCount.push(i);
+		}
+	}
 }

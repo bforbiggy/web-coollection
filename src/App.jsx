@@ -1,19 +1,19 @@
 import './App.scss';
+import { BrowserRouter, Route, Routes, Navigate, Outlet } from "react-router-dom";
+import Landing from "./landing/Landing";
+import Snowflakes from "./snowflakes/Snowflakes";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route>
+          <Route path="*" element={<Navigate to="/" />} />
+          <Route index element={<Landing />} />
+          <Route path="snowflakes/" element={<Snowflakes />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

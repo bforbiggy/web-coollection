@@ -1,5 +1,5 @@
 import './App.scss';
-import { BrowserRouter, Route, Routes, Navigate, Outlet } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Landing from "./landing/Landing";
 import Snowflakes from "./snowflakes/Snowflakes";
 

@@ -3,10 +3,12 @@ import React from "react";
 import { HashRouter, Route, Routes, Navigate } from "react-router-dom";
 
 import Landing from "./landing/Landing";
-const Snowflakes = React.lazy(() => import("./sites/Snowflakes"));
-const Carvendepict = React.lazy(() => import("./sites/carvendepict"));
-const LiquidFollow = React.lazy(() => import("./sites/liquidfollow"));
-
+// const Snowflakes = React.lazy(() => import("./sites/Snowflakes"));
+// const Carvendepict = React.lazy(() => import("./sites/carvendepict"));
+// const LiquidFollow = React.lazy(() => import("./sites/liquidfollow"));
+import Snowflakes from './sites/Snowflakes';
+import Carvendepict from './sites/carvendepict';
+import LiquidFollow from './sites/liquidfollow';
 
 function App() {
   return (

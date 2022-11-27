@@ -14,6 +14,7 @@ function handleMove(event){
 </script>
 
 <div class="liquid" bind:this={container} on:mousemove={handleMove}>
+	
 </div>
 
 <style lang="css">

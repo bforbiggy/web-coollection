@@ -86,9 +86,4 @@ onMount(() => {
 :global(.marked) {
 	background-color: black;
 }
-
-:global(body) {
-	margin: 0px;
-	padding: 0px;
-}
 </style>

@@ -40,7 +40,7 @@ function handleMove(event){
 	animation: wave 2s ease-in-out infinite;
 }
 
-@keyframes wave {
+@keyframes -global-wave {
 	from,
 	to {
 		transform: translate(-50%, 0%);

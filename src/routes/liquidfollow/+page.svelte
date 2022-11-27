@@ -1,13 +1,23 @@
 <script>
+let container;
 
+
+function handleMove(event){
+	// Generate bubble
+	const bubble = document.createElement("div");
+	bubble.className = "bubble";
+	bubble.style.left = `${event.clientX}px`;
+
+	container.appendChild(bubble);
+	setTimeout(() => { container.removeChild(bubble) }, 2000);
+}
 </script>
 
-<div id="liquid">
-	<div class="bubble"></div>
+<div id="liquid" class="liquid" bind:this={container} on:mousemove={handleMove}>
 </div>
 
-<style>
-	#liquid {
+<style lang="css">
+:global(.liquid) {
 	height: 100%;
 	width: 100%;
 
@@ -15,10 +25,9 @@
 	bottom: 0px;
 
 	overflow: hidden;
-	pointer-events: none;
 }
 
-.bubble {
+:global(.bubble) {
 	position: absolute;
 	left: 50%;
 	top: 100%;
@@ -32,7 +41,6 @@
 }
 
 @keyframes wave {
-
 	from,
 	to {
 		transform: translate(-50%, 0%);

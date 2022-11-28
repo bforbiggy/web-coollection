@@ -1,5 +1,5 @@
 <script>
-	let counts = Array(100)
+	let counts = Array(100);
 </script>
 
 <div class="container">
@@ -9,9 +9,11 @@
 </div>
 
 <style lang="scss">
+	@use '../../styles.scss' as styles;
+
 	.container {
 		height: 100vh;
-		background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+		background: radial-gradient(ellipse at bottom, styles.$port 0%, styles.$dark-eerie 100%);
 		overflow: hidden;
 		filter: drop-shadow(0 0 10px white);
 	}
@@ -40,7 +42,6 @@
 			$random-scale: random(10000) * 0.0001;
 			$fall-duration: random_range(10, 30) * 1s;
 			$fall-delay: random(30) * -1s;
-
 			&:nth-child(#{$i}) {
 				opacity: random(10000) * 0.0001;
 				transform: translate($random-x, -10px) scale($random-scale);

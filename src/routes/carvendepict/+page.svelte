@@ -60,7 +60,7 @@ onMount(() => {
 <div id="grid" class="grid" bind:this={grid}>
 </div>
 
-<style>
+<style lang="css">
 :global(.grid) {
 	width: 100vw;
 	height: 100vh;

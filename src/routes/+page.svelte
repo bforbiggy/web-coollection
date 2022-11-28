@@ -16,9 +16,10 @@
 
 		.title{
 			padding: 0;
+
 			p{
 				margin: 0;
-				font-size: xx-large;
+				font-size: 3em;
 			}
 		}
 

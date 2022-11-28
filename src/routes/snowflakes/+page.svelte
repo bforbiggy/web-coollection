@@ -1,9 +1,8 @@
 <script>
-	let counts = Array(100);
 </script>
 
 <div class="container">
-	{#each counts as index}
+	{#each Array(100) as i}
 		<div class="snow" />
 	{/each}
 </div>

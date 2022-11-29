@@ -6,6 +6,7 @@
 		<a href="/carvendepict">Carve n' Depict</a>
 		<a href="/liquidfollow">Following Liquid</a>
 		<a href="/snowflakes">Snowflakes</a>
+		<a href="/watchful-eye">Watchful Eye</a>
 	</div>
 </div>
 

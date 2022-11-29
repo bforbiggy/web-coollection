@@ -3,9 +3,9 @@
 		<p>Table of Contents</p>
 	</div>
 	<div class="contents">
-		<a href="/snowflakes">Snowflakes</a>
-		<a href="/liquidfollow">Following Liquid</a>
 		<a href="/carvendepict">Carve n' Depict</a>
+		<a href="/liquidfollow">Following Liquid</a>
+		<a href="/snowflakes">Snowflakes</a>
 	</div>
 </div>
 

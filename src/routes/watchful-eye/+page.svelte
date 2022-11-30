@@ -5,8 +5,10 @@
 	$: pupilStyle = { x: '-50', y: '-50' };
 
 	function handleMove(event) {
-		console.log(`${event.clientX}, ${event.clientY}`);
-		irisStyle = { x: '-75', y: '-75' };
+		let xRatio = event.clientX / window.innerWidth - 1;
+		let yRatio = event.clientY / window.innerHeight - 1;
+		irisStyle = { x: xRatio * 100, y: yRatio * 100 };
+		pupilStyle = { x: xRatio * 100, y: yRatio * 100 };
 	}
 </script>
 
@@ -14,8 +16,9 @@
 	<div class="eye">
 		<img src={eyeBackSVG} alt="" />
 
-		<div class="iris" style="transform: translate({irisStyle.x}%, {irisStyle.y}%);" />
-		<div class="pupil" />
+		<div class="iris" style="transform: translate({irisStyle.x}%, {irisStyle.y}%);">
+			<div class="pupil" style="transform: translate({pupilStyle.x}%, {pupilStyle.y}%);" />
+		</div>
 	</div>
 </div>
 
@@ -52,18 +55,18 @@
 			width: 2.5rem;
 			background-color: teal;
 			border-radius: 50%;
-		}
 
-		.pupil {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
+			.pupil {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
 
-			height: 1rem;
-			width: 1rem;
-			background-color: aquamarine;
-			border-radius: 50%;
+				height: 1rem;
+				width: 1rem;
+				background-color: aquamarine;
+				border-radius: 50%;
+			}
 		}
 	}
 </style>

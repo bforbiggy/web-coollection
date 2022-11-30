@@ -24,7 +24,7 @@
 
 <style lang="scss">
 	$dorange: #ff5000;
-	$black: #333;
+	$brown: #903811;
 	$white: azure;
 
 	.container {
@@ -33,6 +33,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		background: radial-gradient(#0D1821, #344966);
 	}
 
 	.eye {
@@ -51,9 +52,9 @@
 			left: 50%;
 			transform: translate(-50%, -50%);
 
-			height: 2.5rem;
-			width: 2.5rem;
-			background-color: teal;
+			height: 3rem;
+			width: 3rem;
+			background-color: $white;
 			border-radius: 50%;
 
 			.pupil {
@@ -62,9 +63,9 @@
 				left: 50%;
 				transform: translate(-50%, -50%);
 
-				height: 1rem;
-				width: 1rem;
-				background-color: aquamarine;
+				height: 2rem;
+				width: 2rem;
+				background-color: $brown;
 				border-radius: 50%;
 			}
 		}

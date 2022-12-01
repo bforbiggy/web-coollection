@@ -5,11 +5,23 @@
 	$: irisStyle = { x: '-50', y: '-50' };
 	$: pupilStyle = { x: '-50', y: '-50' };
 
+	const pupilOffsetLimit = [-65, -35];
+	const irisOffsetLimit = [-85, -15];
+
 	function handleMove(event) {
-		let x = event.clientX / window.innerWidth - 1;
-		let y = event.clientY / window.innerHeight - 1;
-		irisStyle = { x: clamp(x * 100, -90, -10), y: clamp(y * 100, -90, -10) };
-		pupilStyle = { x: clamp(x * 100, -65, -25), y: clamp(y * 100, -65, -25) };
+		// Calculate relative position from cursor location and screen size
+		let xOffset = (event.clientX / window.innerWidth - 1) * 100;
+		let yOffset = (event.clientY / window.innerHeight - 1) * 100;
+
+		// Clamp and set relative position values
+		irisStyle = {
+			x: clamp(xOffset, irisOffsetLimit[0], irisOffsetLimit[1]),
+			y: clamp(yOffset, irisOffsetLimit[0], irisOffsetLimit[1])
+		};
+		pupilStyle = {
+			x: clamp(xOffset, pupilOffsetLimit[0], pupilOffsetLimit[1]),
+			y: clamp(yOffset, pupilOffsetLimit[0], pupilOffsetLimit[1])
+		};
 	}
 </script>
 
@@ -50,7 +62,7 @@
 			position: absolute;
 			top: 50%;
 			left: 50%;
-			transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%); // Default is centered
 
 			height: 3rem;
 			width: 3rem;
@@ -59,10 +71,10 @@
 		}
 
 		.pupil {
-			position: relative;
+			position: absolute;
 			top: 50%;
 			left: 50%;
-			transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%); // Default is centered
 
 			height: 2rem;
 			width: 2rem;

@@ -1,6 +1,6 @@
 <script>
 	import eyeBackSVG from './eye-back.svg';
-	const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
+	import clamp from 'clamp';
 
 	$: irisStyle = { x: '-50', y: '-50' };
 	$: pupilStyle = { x: '-50', y: '-50' };

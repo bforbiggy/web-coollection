@@ -49,7 +49,6 @@
 	}
 
 	.eye {
-		position: relative;
 		display: flex;
 		align-self: center;
 		justify-self: center;
@@ -62,7 +61,7 @@
 			position: absolute;
 			top: 50%;
 			left: 50%;
-			transform: translate(-50%, -50%); // Default is centered
+			transform: translate(-50%, -50%);
 
 			height: 3rem;
 			width: 3rem;
@@ -74,7 +73,7 @@
 			position: absolute;
 			top: 50%;
 			left: 50%;
-			transform: translate(-50%, -50%); // Default is centered
+			transform: translate(-50%, -50%);
 
 			height: 2rem;
 			width: 2rem;

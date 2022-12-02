@@ -26,12 +26,14 @@
 </script>
 
 <div class="container" on:mousemove={handleMove}>
-	<div class="eye">
-		<img src={eyeBackSVG} alt="" style="transform: translate(-50%, -50%);" />
-		<div class="iris" style="transform: translate({irisStyle.x}%, {irisStyle.y}%);">
-			<div class="pupil" style="transform: translate({pupilStyle.x}%, {pupilStyle.y}%);" />
+	<a href="watchful-eye/more">
+		<div class="eye">
+			<img src={eyeBackSVG} alt="" style="transform: translate(-50%, -50%);" />
+			<div class="iris" style="transform: translate({irisStyle.x}%, {irisStyle.y}%);">
+				<div class="pupil" style="transform: translate({pupilStyle.x}%, {pupilStyle.y}%);" />
+			</div>
 		</div>
-	</div>
+	</a>
 </div>
 
 <style lang="scss">

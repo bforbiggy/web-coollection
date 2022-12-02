@@ -27,7 +27,7 @@
 
 <div class="container" on:mousemove={handleMove}>
 	<div class="eye">
-		<img src={eyeBackSVG} alt="" />
+		<img src={eyeBackSVG} alt="" style="transform: translate(-50%, -50%);" />
 		<div class="iris" style="transform: translate({irisStyle.x}%, {irisStyle.y}%);">
 			<div class="pupil" style="transform: translate({pupilStyle.x}%, {pupilStyle.y}%);" />
 		</div>
@@ -49,19 +49,19 @@
 	}
 
 	.eye {
+		position: relative;
 		display: flex;
 		align-self: center;
 		justify-self: center;
 
 		img {
-			position: relative;
+			position: absolute;
 		}
 
 		.iris {
 			position: absolute;
 			top: 50%;
 			left: 50%;
-			transform: translate(-50%, -50%);
 
 			height: 3rem;
 			width: 3rem;
@@ -73,7 +73,6 @@
 			position: absolute;
 			top: 50%;
 			left: 50%;
-			transform: translate(-50%, -50%);
 
 			height: 2rem;
 			width: 2rem;

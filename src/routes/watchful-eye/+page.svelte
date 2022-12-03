@@ -17,8 +17,10 @@
 
 <style lang="scss">
 	.container {
-		width: 100vw;
-		height: 100vh;
+		min-width: 100vw;
+		width: fit-content;
+		min-height: 100vh;
+		height: fit-content;
 		display: flex;
 		align-items: center;
 		justify-content: center;

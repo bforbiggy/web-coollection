@@ -1,26 +1,26 @@
 <script>
 	import Eye from '../eye.svelte';
 
-	const eyeCount = 25;
-
-	let eyeHandlers = Array(eyeCount);
+	let eyeHandlers = Array(25);
 	function handleMove(event) {
-		for (let i = 0; i < eyeCount; i++) {
+		for (let i = 0; i < eyeHandlers.length; i++) {
 			eyeHandlers[i](event);
 		}
 	}
 </script>
 
 <div class="container" on:mousemove={handleMove}>
-	{#each [...Array(eyeCount).keys()] as i}
+	{#each [...eyeHandlers.keys()] as i}
 		<Eye bind:handleMoveEye={eyeHandlers[i]} />
 	{/each}
 </div>
 
 <style lang="scss">
 	.container {
-		width: 100vw;
-		height: 100vh;
+		min-width: 100vw;
+		width: fit-content;
+		min-height: 100vh;
+		height: fit-content;
 		display: grid;
 		grid-template-columns: repeat(5, 1fr);
 		align-items: center;

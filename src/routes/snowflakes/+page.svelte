@@ -11,7 +11,10 @@
 	@use '../../styles.scss' as styles;
 
 	.container {
-		height: 100vh;
+		min-width: 100vw;
+		width: fit-content;
+		min-height: 100vh;
+		height: fit-content;
 		background: radial-gradient(ellipse at bottom, styles.$port 0%, styles.$dark-eerie 100%);
 		overflow: hidden;
 		filter: drop-shadow(0 0 10px white);

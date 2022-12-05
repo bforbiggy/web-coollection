@@ -21,6 +21,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"clamp": "^1.0.1"
+		"clamp": "^1.0.1",
+		"svelte-device-detector": "^0.2.2"
 	}
 }

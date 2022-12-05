@@ -1,5 +1,6 @@
 <script>
 	import Eye from '../eye.svelte';
+	import DeviceDetector from 'svelte-device-detector';
 
 	let eyeHandlers = Array(25);
 	function handleMove(event) {
@@ -10,9 +11,11 @@
 </script>
 
 <div class="container" on:mousemove={handleMove}>
-	{#each [...eyeHandlers.keys()] as i}
-		<Eye bind:handleMoveEye={eyeHandlers[i]} />
-	{/each}
+	<DeviceDetector showInDevice="desktop">
+		{#each [...eyeHandlers.keys()] as i}
+			<Eye bind:handleMoveEye={eyeHandlers[i]} />
+		{/each}
+	</DeviceDetector>
 </div>
 
 <style lang="scss">

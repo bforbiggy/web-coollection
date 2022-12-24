@@ -22,6 +22,7 @@
 	"type": "module",
 	"dependencies": {
 		"clamp": "^1.0.1",
-		"svelte-device-detector": "^0.2.2"
+		"svelte-device-detector": "^0.2.2",
+		"three": "^0.148.0"
 	}
 }

@@ -3,7 +3,7 @@
 		<p>Table of Contents</p>
 	</div>
 	<div class="contents">
-		<a href="/animated-shape">Animated Shape</a>
+		<a href="/animated-shape">Holy Shiba</a>
 		<a href="/carvendepict">Carve n' Depict</a>
 		<a href="/liquidfollow">Following Liquid</a>
 		<a href="/snowflakes">Snowflakes</a>
@@ -16,10 +16,10 @@
 		width: 100vw;
 		height: 100%;
 
-		.title{
+		.title {
 			padding: 0;
 
-			p{
+			p {
 				margin: 0;
 				font-size: 3em;
 			}

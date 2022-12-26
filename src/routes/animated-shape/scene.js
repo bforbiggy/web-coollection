@@ -40,7 +40,7 @@ function animate() {
 	const shiba = shapes.shiba;
 	shiba.rotation.x = Math.sin(x) / 4;
 	shiba.rotation.y += 0.01;
-	x += 0.01;
+	x += 0.011;
 	renderer.render(scene, camera);
 };
 

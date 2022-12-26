@@ -12,14 +12,17 @@ function resize() {
 };
 
 function addShapes() {
-	let geometry = new THREE.TorusGeometry(undefined, undefined, 16, 100);
-	let material = new THREE.MeshToonMaterial({ color: 0xB49FCC });
+	// Donut loader
+	let geometry = new THREE.TorusGeometry(10, 2, 16, 100);
+	let material = new THREE.MeshToonMaterial({ color: 0xffd266 });
 	let shape = new THREE.Mesh(geometry, material);
-	shape.scale.set(0.5, 0.5, 0.5);
-	shape.rotation.setFromVector3(new THREE.Vector3(Math.PI / 2, 0, 0));
+	shape.scale.set(0.02, 0.02, 0.02);
+	shape.position.set(0, 0.35, 0);
+	shape.rotation.set(Math.PI / 2, 0, 0);
 	shapes.torus = shape;
 	scene.add(shapes.torus);
 
+	// Shiba loader
 	loader.load('shiba/scene.gltf',
 		(gltf) => {
 			shapes.shiba = gltf.scene;
@@ -31,11 +34,13 @@ function addShapes() {
 	);
 }
 
+let x = 0;
 function animate() {
 	requestAnimationFrame(animate);
 	const shiba = shapes.shiba;
-	shiba.rotation.x += 0.01;
+	shiba.rotation.x = Math.sin(x) / 4;
 	shiba.rotation.y += 0.01;
+	x += 0.01;
 	renderer.render(scene, camera);
 };
 
@@ -46,7 +51,7 @@ function init() {
 	addShapes();
 
 	// Add lights to scene
-	const light = new THREE.DirectionalLight(0xffffff, 1);
+	const light = new THREE.DirectionalLight(0xffffff);
 	light.position.set(-1, 2, 4);
 	scene.add(light);
 

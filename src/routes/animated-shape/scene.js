@@ -11,7 +11,7 @@ function resize() {
 	camera.updateProjectionMatrix();
 };
 
-function addShapes() {
+async function addShapes() {
 	// Donut loader
 	let geometry = new THREE.TorusGeometry(10, 2, 16, 100);
 	let material = new THREE.MeshToonMaterial({ color: 0xffd266 });
@@ -20,18 +20,16 @@ function addShapes() {
 	shape.position.set(0, 0.35, 0);
 	shape.rotation.set(Math.PI / 2, 0, 0);
 	shapes.torus = shape;
-	scene.add(shapes.torus);
 
 	// Shiba loader
-	loader.load('shiba/scene.gltf',
-		(gltf) => {
-			shapes.shiba = gltf.scene;
-			shapes.shiba.add(shapes.torus);
-			scene.add(shapes.shiba);
-		},
-		undefined,
-		(error) => console.error(error)
-	);
+	let gltf = await loader.loadAsync('shiba/scene.gltf');
+	shapes.shiba = gltf.scene;
+	shapes.shiba.add(shapes.torus);
+
+	// Add all shapes to scene
+	for (const key in shapes)
+		scene.add(shapes[key]);
+	animate();
 }
 
 let x = 0;
@@ -44,11 +42,11 @@ function animate() {
 	renderer.render(scene, camera);
 };
 
-function init() {
+async function init() {
 	// Setup scene
 	scene = new THREE.Scene();
 	camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
-	addShapes();
+	await addShapes();
 
 	// Add lights to scene
 	const light = new THREE.DirectionalLight(0xffffff);
@@ -63,7 +61,6 @@ function run(canvas) {
 	renderer = new THREE.WebGLRenderer({ antialias: true, canvas: canvas });
 	window.addEventListener('resize', resize);
 	resize();
-	animate();
 };
 
 export { init, run };

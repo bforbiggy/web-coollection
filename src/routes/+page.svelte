@@ -6,6 +6,7 @@
 		<a href="/animated-shape">Holy Shiba</a>
 		<a href="/carvendepict">Carve n' Depict</a>
 		<a href="/liquidfollow">Following Liquid</a>
+		<a href="/parallax-image-gallery">Parallax Image Gallery</a>
 		<a href="/snowflakes">Snowflakes</a>
 		<a href="/watchful-eye">Watchful Eye</a>
 	</div>
@@ -13,8 +14,8 @@
 
 <style lang="scss">
 	.toc {
-		width: 100vw;
-		height: 100%;
+		min-width: 100vw;
+		min-height: 100%;
 
 		.title {
 			padding: 0;

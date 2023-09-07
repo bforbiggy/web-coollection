@@ -5,6 +5,7 @@
 	<div class="contents">
 		<a href="/animated-shape">Holy Shiba</a>
 		<a href="/carvendepict">Carve n' Depict</a>
+		<a href="/dark-mode">Dark Mode</a>
 		<a href="/crashwebsite">Website Crasher</a>
 		<a href="/liquidfollow">Following Liquid</a>
 		<a href="/parallax-image-gallery">Parallax Image Gallery</a>

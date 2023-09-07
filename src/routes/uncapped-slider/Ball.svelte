@@ -1,17 +1,20 @@
 <script>
 	import { onMount } from 'svelte';
+	import clamp from 'clamp';
 	let width, height;
 
+	let isDragging = false;
+
+	let startX = 0;
+	let startY = 0;
 	let xPos = 0; // Initial horizontal position
 	let yPos = 0; // Initial vertical position
 	let xVelocity = 0; // Initial horizontal velocity
 	let yVelocity = 0; // Initial vertical velocity
-	let isDragging = false;
-	let startX = 0;
-	let startY = 0;
 
 	const gravity = 0.5; // Acceleration due to gravity
-	const bounceFactor = -0.5; // Factor to simulate bounce
+	const bounceFactor = -0.8; // Factor to simulate bounce
+	const velocityLimit = 20;
 
 	onMount(() => {
 		const updateInterval = setInterval(updatePosition, 16);
@@ -20,8 +23,9 @@
 
 	function updatePosition() {
 		if (!isDragging) {
-			// Apply gravity to vertical velocity
+			// Perform y motion calculations
 			yVelocity += gravity;
+			yVelocity = clamp(-velocityLimit, yVelocity, velocityLimit);
 			yPos += yVelocity;
 
 			// When ground is hit, reset to ground and bounce
@@ -29,8 +33,13 @@
 				yPos = height - 25; // Reset the position to the ground
 				yVelocity *= bounceFactor; // Apply vertical bounce
 			}
+			if (yPos <= 0) {
+				yPos = 0; // Reset the position to the ground
+				yVelocity *= bounceFactor; // Apply vertical bounce
+			}
 
-			// Apply horizontal velocity and friction
+			// Perform x motion calculations
+			xVelocity = clamp(-velocityLimit, xVelocity, velocityLimit);
 			xPos += xVelocity;
 			xVelocity *= 0.99;
 
@@ -52,17 +61,21 @@
 		startY = event.clientY - yPos;
 	}
 
-	function handleDragEnd(event) {
-		isDragging = false;
+	function handleDrag(event) {
 		xPos = event.clientX - startX;
 		yPos = event.clientY - startY;
 	}
 
-	function handleDrag(event) {
-		if (isDragging) {
-			xPos = event.clientX - startX;
-			yPos = event.clientY - startY;
-		}
+	function handleDragEnd(event) {
+		isDragging = false;
+
+		// Calculate the change in drag
+		const deltaX = event.clientX - startX;
+		const deltaY = event.clientY - startY;
+
+		// Convert change in drag to velocity
+		xVelocity = deltaX / 10;
+		yVelocity = deltaY / 10;
 	}
 </script>
 
@@ -92,9 +105,9 @@
 	.ball {
 		width: 25px;
 		height: 25px;
-		background-color: #3498db;
-		border-radius: 50%;
+		background-color: #3498db; /* Blue color */
+		border-radius: 50%; /* Make it round */
 		position: absolute;
-		cursor: grab;
+		cursor: grab; /* Change cursor on hover for dragging */
 	}
 </style>

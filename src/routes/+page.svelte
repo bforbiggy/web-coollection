@@ -14,6 +14,13 @@
 		<a href="/uncapped-slider">Uncapped Volume Slider</a>
 		<a href="/watchful-eye">Watchful Eye</a>
 	</div>
+
+	<div class="title">
+		<p>Offsite Pages</p>
+	</div>
+	<div class="contents">
+		<a href="https://goulartnogueira.github.io/BadUI/">Bad UI Collection</a>
+	</div>
 </div>
 
 <style lang="scss">

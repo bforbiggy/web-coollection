@@ -2,6 +2,9 @@
 	import { onMount } from 'svelte';
 	import clamp from 'clamp';
 
+	let width;
+	let height;
+
 	let isDragging = false;
 	let xVel = 0; // Initial horizontal velocity
 	let yVel = 0; // Initial vertical velocity
@@ -11,14 +14,14 @@
 	const velocityLimit = 30;
 
 	onMount(() => {
-		x = width / 2 + width / 10;
-		y = height / 2;
+		x = width / 2 - width / 10 + 20;
+		y = height / 2 + 12.5;
 		const updateInterval = setInterval(updatePosition, 16);
 		return () => clearInterval(updateInterval);
 	});
 
 	function updatePosition() {
-		if (!isDragging) {
+		if (!onSlider && !isDragging) {
 			// Perform y motion calculations
 			yVel += gravity;
 			yVel *= 0.99;
@@ -54,13 +57,22 @@
 
 	let startEvent;
 	function handleDragStart(event) {
-		event.dataTransfer.setDragImage(new Image(), 0, 0);
 		isDragging = true;
+		event.dataTransfer.setDragImage(new Image(), 0, 0);
 		startEvent = event;
 	}
 
 	function handleDrag(event) {
 		if (event.screenX === 0 || event.screenY === 0) return;
+		if (onSlider) {
+			if (xPercent >= 100) {
+				onSlider = false;
+				startEvent = event;
+			}
+			x = event.clientX - 12.5;
+			return;
+		}
+
 		x = event.clientX - 12.5;
 		y = event.clientY - 12.5;
 	}
@@ -79,10 +91,11 @@
 
 	export let x;
 	export let y;
-	export let width;
-	export let height;
+	export let onSlider;
+	export let xPercent;
 </script>
 
+<svelte:window bind:innerWidth={width} bind:innerHeight={height} />
 <div class="balling">
 	<div
 		class="ball"

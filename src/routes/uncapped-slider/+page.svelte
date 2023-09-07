@@ -3,8 +3,7 @@
 	let width = 0;
 	let height = 0;
 
-	let fallen = false;
-	let percent = 0;
+	let onSlider = true;
 
 	let x = 0;
 	let y = 0;
@@ -28,28 +27,16 @@
 
 <svelte:window bind:innerWidth={width} bind:innerHeight={height} />
 <div class="container">
-	{#if !fallen}
-		<p>{percent}%</p>
+	{#if onSlider}
+		<p>{xPercent.toFixed(0) - 4}%</p>
 	{:else}
 		<p>{xPercent.toFixed(0)}% {yPercent <= 0 ? '+' : '-'} {Math.abs(yPercent).toFixed(0)}i</p>
 	{/if}
 
 	<div class="slidecontainer">
 		<p>🔊</p>
-
-		{#if !fallen}
-			<input
-				type="range"
-				min="0"
-				max="100"
-				class="slider"
-				bind:value={percent}
-				on:input={() => (fallen = fallen || percent >= 100)}
-			/>
-		{:else}
-			<div class="slider" />
-			<Ball bind:x bind:y {width} {height} />
-		{/if}
+		<div class="slider" />
+		<Ball bind:x bind:y bind:onSlider {xPercent} />
 	</div>
 </div>
 

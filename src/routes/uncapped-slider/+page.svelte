@@ -1,14 +1,32 @@
 <script>
-	let fallen = false;
+	import Ball from './Ball.svelte';
 
+	let fallen = false;
 	let percent = 0;
+
 	let x = 0;
 	let y = 0;
 </script>
 
 <div class="container">
-	<p>{percent}%</p>
-	<input type="range" min="0" max="100" class="slider" bind:value={percent} />
+	<p>{percent}% {fallen}</p>
+	<div class="slidecontainer">
+		<p>🔊</p>
+
+		{#if !fallen}
+			<input
+				type="range"
+				min="0"
+				max="100"
+				class="slider"
+				bind:value={percent}
+				on:input={() => (fallen = fallen || percent >= 100)}
+			/>
+		{:else}
+			<div class="slider" />
+			<Ball />
+		{/if}
+	</div>
 </div>
 
 <style lang="scss">
@@ -21,6 +39,15 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+
+		p {
+			user-select: none;
+		}
+
+		.slidecontainer {
+			display: flex;
+			align-items: center;
+		}
 	}
 
 	.slider {
@@ -30,13 +57,11 @@
 		background: #d3d3d3;
 
 		height: 5px;
-		width: 20%;
+		width: 20vw;
 		border-radius: 5px;
 	}
 
 	.slider::-webkit-slider-thumb {
-		-webkit-appearance: none;
-		appearance: none;
 		width: 25px;
 		height: 25px;
 		border-radius: 50%;

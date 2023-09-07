@@ -3,6 +3,7 @@
 	let width = 0;
 	let height = 0;
 
+	let slider;
 	let onSlider = true;
 
 	let x = 0;
@@ -11,17 +12,17 @@
 	let xPercent = 0;
 	let yPercent = 0;
 	$: {
-		// Convert x,y to normalized ratios
-		xPercent = x / width;
-		xPercent *= 100;
-		yPercent = y / height;
-		yPercent *= 100;
+		if (slider) {
+			let rect = slider.getBoundingClientRect();
 
-		// Manually adjust for understandability
-		xPercent -= 40;
-		xPercent *= 5;
-		yPercent -= 50;
-		yPercent *= 3;
+			xPercent = (x - rect.left + 12.5) / (rect.right - rect.left + 12.5);
+			xPercent *= 100;
+			xPercent += 4;
+
+			yPercent = y / height;
+			yPercent *= 100;
+			yPercent -= 51;
+		}
 	}
 </script>
 
@@ -35,8 +36,10 @@
 
 	<div class="slidecontainer">
 		<p>🔊</p>
-		<div class="slider" />
-		<Ball bind:x bind:y bind:onSlider {xPercent} />
+		<div class="slider" bind:this={slider} />
+		{#if slider}
+			<Ball bind:x bind:y bind:onSlider bind:slider {xPercent} />
+		{/if}
 	</div>
 </div>
 
@@ -60,6 +63,7 @@
 			display: flex;
 			align-items: center;
 			font-size: xx-large;
+			gap: 1vw;
 		}
 	}
 

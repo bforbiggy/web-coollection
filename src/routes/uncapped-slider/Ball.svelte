@@ -13,9 +13,11 @@
 	const bounceFactor = -0.9; // Factor to simulate bounce
 	const velocityLimit = 30;
 
+	let rect;
 	onMount(() => {
-		x = width / 2 - width / 10 + 20;
-		y = height / 2 + 12.5;
+		rect = slider.getBoundingClientRect();
+		x = rect.left - 12.5;
+		y = rect.top - 12.5;
 		const updateInterval = setInterval(updatePosition, 16);
 		return () => clearInterval(updateInterval);
 	});
@@ -65,7 +67,7 @@
 	function handleDrag(event) {
 		if (event.screenX === 0 || event.screenY === 0) return;
 		if (onSlider) {
-			if (xPercent >= 100) {
+			if (x > rect.right + 12.5 || x < rect.left - 12.5) {
 				onSlider = false;
 				startEvent = event;
 			}
@@ -92,7 +94,7 @@
 	export let x;
 	export let y;
 	export let onSlider;
-	export let xPercent;
+	export let slider;
 </script>
 
 <svelte:window bind:innerWidth={width} bind:innerHeight={height} />
@@ -119,6 +121,7 @@
 	}
 
 	.ball {
+		gap: 0;
 		margin: 0;
 		width: 25px;
 		height: 25px;

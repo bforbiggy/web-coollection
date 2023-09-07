@@ -6,10 +6,19 @@
 
 	let x = 0;
 	let y = 0;
+
+	let width = 0;
+	let height = 0;
 </script>
 
+<svelte:window bind:innerWidth={width} bind:innerHeight={height} />
 <div class="container">
-	<p>{percent}% {fallen}</p>
+	{#if !fallen}
+		<p>{percent}%</p>
+	{:else}
+		<p>{x}% + {y}i</p>
+	{/if}
+
 	<div class="slidecontainer">
 		<p>🔊</p>
 
@@ -24,7 +33,7 @@
 			/>
 		{:else}
 			<div class="slider" />
-			<Ball />
+			<Ball {x} {y} {width} {height} />
 		{/if}
 	</div>
 </div>
@@ -47,6 +56,7 @@
 		.slidecontainer {
 			display: flex;
 			align-items: center;
+			font-size: xx-large;
 		}
 	}
 
@@ -62,10 +72,12 @@
 	}
 
 	.slider::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		appearance: none;
 		width: 25px;
 		height: 25px;
 		border-radius: 50%;
-		background: #04aa6d;
+		background: black;
 		cursor: pointer;
 	}
 
@@ -73,7 +85,7 @@
 		width: 25px;
 		height: 25px;
 		border-radius: 50%;
-		background: #04aa6d;
+		background: black;
 		cursor: pointer;
 	}
 </style>

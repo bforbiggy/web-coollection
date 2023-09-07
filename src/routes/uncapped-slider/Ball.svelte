@@ -54,14 +54,15 @@
 
 	let startEvent;
 	function handleDragStart(event) {
+		event.dataTransfer.setDragImage(new Image(), 0, 0);
 		isDragging = true;
 		startEvent = event;
 	}
 
 	function handleDrag(event) {
 		if (event.screenX === 0 || event.screenY === 0) return;
-		x = event.clientX;
-		y = event.clientY;
+		x = event.clientX - 12.5;
+		y = event.clientY - 12.5;
 	}
 
 	function handleDragEnd(event) {
@@ -85,11 +86,11 @@
 <div class="balling">
 	<div
 		class="ball"
+		draggable="true"
 		on:dragstart={handleDragStart}
 		on:drag={handleDrag}
 		on:dragend={handleDragEnd}
 		style={`top: ${y}px; left: ${x}px`}
-		draggable="true"
 	/>
 </div>
 
@@ -105,6 +106,7 @@
 	}
 
 	.ball {
+		margin: 0;
 		width: 25px;
 		height: 25px;
 		background-color: black;

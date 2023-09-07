@@ -1,5 +1,7 @@
 <script>
 	import Ball from './Ball.svelte';
+	let width = 0;
+	let height = 0;
 
 	let fallen = false;
 	let percent = 0;
@@ -7,8 +9,21 @@
 	let x = 0;
 	let y = 0;
 
-	let width = 0;
-	let height = 0;
+	let xPercent = 0;
+	let yPercent = 0;
+	$: {
+		// Convert x,y to normalized ratios
+		xPercent = x / width;
+		xPercent *= 100;
+		yPercent = y / height;
+		yPercent *= 100;
+
+		// Manually adjust for understandability
+		xPercent -= 40;
+		xPercent *= 5;
+		yPercent -= 50;
+		yPercent *= 3;
+	}
 </script>
 
 <svelte:window bind:innerWidth={width} bind:innerHeight={height} />
@@ -16,7 +31,7 @@
 	{#if !fallen}
 		<p>{percent}%</p>
 	{:else}
-		<p>{x}% + {y}i</p>
+		<p>{xPercent.toFixed(0)}% {yPercent <= 0 ? '+' : '-'} {Math.abs(yPercent).toFixed(0)}i</p>
 	{/if}
 
 	<div class="slidecontainer">
@@ -33,7 +48,7 @@
 			/>
 		{:else}
 			<div class="slider" />
-			<Ball {x} {y} {width} {height} />
+			<Ball bind:x bind:y {width} {height} />
 		{/if}
 	</div>
 </div>
@@ -44,6 +59,7 @@
 		max-width: 100vw;
 		min-height: 100vh;
 		max-height: 100vh;
+		overflow: hidden;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -87,5 +103,9 @@
 		border-radius: 50%;
 		background: black;
 		cursor: pointer;
+	}
+
+	:global(body) {
+		overflow: hidden;
 	}
 </style>

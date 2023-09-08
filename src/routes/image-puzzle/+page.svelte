@@ -1,29 +1,28 @@
 <script>
+	import Cropped from './Cropped.svelte';
 	import qrcode from './qrcode.png';
 	let image = qrcode;
+
 	let base;
+	$: tiles = baseChanged(base);
 
 	// Whenever base changes, update all tiles
-	let tiles = [];
-	$: {
-		if (base) {
-			let width = base.width;
-			let height = base.height;
+	function baseChanged() {
+		if (!base) return [];
 
-			let tilesData = [];
-			for (let x = 0; x < 3; x++) {
-				for (let y = 0; y < 3; y++) {
-					tilesData.push({
-						width: width,
-						height: height,
-						x: x + 1,
-						y: y + 1
-					});
-				}
+		let tiles = [];
+		for (let x = 0; x < 4; x++) {
+			for (let y = 0; y < 4; y++) {
+				const data = {
+					x: x + 1,
+					y: y + 1,
+					width: base.width,
+					height: base.height
+				};
+				tiles.push(data);
 			}
-
-			tiles = tilesData;
 		}
+		return tiles;
 	}
 </script>
 
@@ -31,8 +30,8 @@
 	<img id="base" src={image} alt="" bind:this={base} />
 
 	<div class="grid">
-		{#each tiles as data}
-			<img style="grid-column-start: {data.x}; grid-row-start: {data.y};" src={image} alt="" />
+		{#each tiles as parentData}
+			<Cropped {image} {parentData} />
 		{/each}
 	</div>
 </div>

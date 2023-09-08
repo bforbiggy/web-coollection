@@ -9,7 +9,6 @@
 		<a href="/crashwebsite">Website Crasher</a>
 		<a href="/liquidfollow">Following Liquid</a>
 		<a href="/parallax-image-gallery">Parallax Image Gallery</a>
-		<a href="/password-generator">Password Generator</a>
 		<a href="/snowflakes">Snowflakes</a>
 		<a href="/uncapped-slider">Uncapped Volume Slider</a>
 		<a href="/watchful-eye">Watchful Eye</a>

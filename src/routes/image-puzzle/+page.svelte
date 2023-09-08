@@ -9,13 +9,17 @@
 	// Whenever base changes, update all tiles
 	function baseChanged() {
 		if (!base) return [];
+		const xMax = 4;
+		const yMax = 4;
 
 		let tiles = [];
-		for (let x = 0; x < 4; x++) {
-			for (let y = 0; y < 4; y++) {
+		for (let x = 0; x < xMax; x++) {
+			for (let y = 0; y < yMax; y++) {
 				const data = {
 					x: x + 1,
 					y: y + 1,
+					xMax: xMax,
+					yMax: yMax,
 					width: base.width,
 					height: base.height
 				};

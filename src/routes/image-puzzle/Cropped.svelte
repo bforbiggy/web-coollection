@@ -5,8 +5,8 @@
 	// Calculate style data for the image
 	let x = parentData.x;
 	let y = parentData.y;
-	let cropWidth = parentData.width / parentData.xMax;
-	let cropHeight = parentData.height / parentData.yMax;
+	let cropWidth = base.width / parentData.xMax;
+	let cropHeight = base.height / parentData.yMax;
 
 	// Calculate cutoffs
 	let yLowerCutoff = Math.max(0, y - 1) * cropHeight;
@@ -19,7 +19,7 @@
 	style += `grid-column-start: ${x};`;
 	style += `grid-row-start: ${y};`;
 	style += `clip-path: inset(${yLowerCutoff}px ${xRightCutoff}px ${yUpperCutoff}px ${xLeftCutoff}px);`;
-	style += `margin: -${parentData.height - cropHeight}px -${parentData.width - cropWidth}px`;
+	// style += `margin: -${base.height - cropHeight}px -${base.width - cropWidth}px`;
 </script>
 
 <img {style} src={image} alt="" />

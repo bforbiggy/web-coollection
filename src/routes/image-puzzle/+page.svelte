@@ -19,9 +19,7 @@
 					x: x + 1,
 					y: y + 1,
 					xMax: xMax,
-					yMax: yMax,
-					width: base.width,
-					height: base.height
+					yMax: yMax
 				};
 				tiles.push(data);
 			}
@@ -35,7 +33,7 @@
 
 	<div class="grid">
 		{#each tiles as parentData}
-			<Cropped {image} {parentData} />
+			<Cropped {image} {parentData} {base} />
 		{/each}
 	</div>
 </div>

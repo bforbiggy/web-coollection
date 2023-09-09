@@ -1,9 +1,8 @@
 <script>
 	import randomInteger from 'random-int';
 	import Cropped from './Cropped.svelte';
-	import qrcode from './qrcode.png';
-	import { onMount } from 'svelte';
-	let image = qrcode;
+	import andy from './Andy.png';
+	let image = andy;
 
 	let base;
 
@@ -36,8 +35,8 @@
 					posY: y + 1,
 					xMax: xMax,
 					yMax: yMax,
-					cropX: x + 1,
-					cropY: y + 1,
+					cropX: x,
+					cropY: y,
 					cropWidth: base.width / xMax,
 					cropHeight: base.height / yMax
 				};

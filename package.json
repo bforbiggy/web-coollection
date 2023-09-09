@@ -22,6 +22,7 @@
 	"dependencies": {
 		"@sveltejs/adapter-cloudflare": "^1.0.0",
 		"clamp": "^1.0.1",
+		"random-int": "^3.0.0",
 		"svelte-device-detector": "^0.2.2",
 		"three": "^0.148.0"
 	}

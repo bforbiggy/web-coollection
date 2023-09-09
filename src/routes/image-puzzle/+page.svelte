@@ -1,39 +1,45 @@
 <script>
+	import randomInteger from 'random-int';
 	import Cropped from './Cropped.svelte';
 	import qrcode from './qrcode.png';
+	import { onMount } from 'svelte';
 	let image = qrcode;
 
 	let base;
-	$: tilesData = baseChanged(base);
-
-	function getRandomInt(max) {
-		return Math.floor(Math.random() * max);
-	}
 
 	// Shuffle the positional x/y values
 	function shuffleXY(tiles) {
 		for (let tile of tiles) {
-			let other = tiles[getRandomInt(tiles.length)];
-			[tile.x, tile.y, other.x, other.y] = [other.x, other.y, tile.x, tile.y];
+			let other = tiles[randomInteger(tiles.length - 1)];
+			[tile.posX, tile.posY, other.posX, other.posY] = [
+				other.posX,
+				other.posY,
+				tile.posX,
+				tile.posY
+			];
 		}
 	}
 
 	// Whenever base changes, update all tiles
-	function baseChanged() {
-		if (!base) return [];
+	$: tilesData = baseChanged(base);
+	function baseChanged(base) {
+		let tiles = [];
+		if (!base || base.width == 0 || base.height == 0) return tiles;
+
 		const xMax = 4;
 		const yMax = 4;
 
-		let tiles = [];
 		for (let x = 0; x < xMax; x++) {
 			for (let y = 0; y < yMax; y++) {
 				const data = {
-					x: x + 1,
-					y: y + 1,
+					posX: x + 1,
+					posY: y + 1,
 					cropX: x + 1,
 					cropY: y + 1,
 					xMax: xMax,
-					yMax: yMax
+					yMax: yMax,
+					width: base.width,
+					height: base.height
 				};
 				tiles.push(data);
 			}
@@ -45,11 +51,11 @@
 </script>
 
 <div class="container">
-	<img id="base" src={image} alt="" bind:this={base} />
+	<img id="base" src={image} alt="" bind:this={base} on:load={() => (base = base)} />
 
 	<div class="grid">
 		{#each tilesData as parentData}
-			<Cropped {image} {parentData} {base} />
+			<Cropped {image} {parentData} />
 		{/each}
 	</div>
 </div>

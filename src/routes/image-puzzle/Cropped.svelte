@@ -4,9 +4,14 @@
 
 	let x;
 	let y;
-	function handleDrag(event) {
-		if (event.screenX == 0 || event.screenY == 0) return;
+
+	function handleDragStart(event) {
 		event.dataTransfer.setDragImage(new Image(), 0, 0);
+	}
+
+	function handleDrag(event) {
+		event.dataTransfer.setDragImage(new Image(), 0, 0);
+		if (event.screenX == 0 || event.screenY == 0) return;
 		x = event.screenX;
 		y = event.screenY;
 	}
@@ -24,20 +29,30 @@
 	let xRightCutoff = (xMax - cropX) * cropWidth;
 
 	// Convert style data to css style text
-	let style = '';
+	let ivvy = '';
+	let divvy = '';
 	$: {
-		let temp = '';
-		temp += `grid-area: ${posX} / ${posY};`;
-		temp += `clip-path: inset(${yLowerCutoff}px ${xRightCutoff}px ${yUpperCutoff}px ${xLeftCutoff}px);`;
-		temp += `margin: -${yLowerCutoff}px -${xRightCutoff}px -${yUpperCutoff}px -${xLeftCutoff}px;`;
-
+		divvy = '';
+		divvy += `overflow: hidden;`;
+		divvy += `width: ${cropWidth}px; height:${cropHeight}px;`;
+		divvy += `grid-area: ${posX} / ${posY};`;
 		// Determine positional data
 		if (x && y) {
-			temp += `position: absolute;`;
-			temp += `top: ${y}px; left: ${x}px;`;
+			divvy += `position: absolute;`;
+			divvy += `top: ${y}px; left: ${x}px;`;
 		}
-		style = temp;
+
+		ivvy = '';
+		ivvy += `margin: -${yLowerCutoff}px -${xRightCutoff}px -${yUpperCutoff}px -${xLeftCutoff}px;`;
+
+		// temp += `clip-path: inset(${yLowerCutoff}px ${xRightCutoff}px ${yUpperCutoff}px ${xLeftCutoff}px);`;
+		// style = temp;
 	}
 </script>
 
-<img {style} src={image} alt="" draggable="true" on:drag={handleDrag} />
+<div style={divvy} on:dragstart={handleDragStart} on:drag={handleDrag} draggable="true">
+	<img style={ivvy} src={image} alt="" />
+</div>
+
+<style lang="scss">
+</style>

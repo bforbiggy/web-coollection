@@ -34,12 +34,12 @@
 				const data = {
 					posX: x + 1,
 					posY: y + 1,
-					cropX: x + 1,
-					cropY: y + 1,
 					xMax: xMax,
 					yMax: yMax,
-					width: base.width,
-					height: base.height
+					cropX: x + 1,
+					cropY: y + 1,
+					cropWidth: base.width / xMax,
+					cropHeight: base.height / yMax
 				};
 				tiles.push(data);
 			}

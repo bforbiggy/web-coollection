@@ -65,6 +65,8 @@
 		max-width: 100vw;
 		min-height: 100vh;
 		max-height: 100vh;
+		background: linear-gradient(#2f2f2f, #dc7f9b);
+
 		display: flex;
 		justify-content: center;
 		align-items: center;

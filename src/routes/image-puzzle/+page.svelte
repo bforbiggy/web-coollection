@@ -6,6 +6,18 @@
 	let base;
 	$: tilesData = baseChanged(base);
 
+	function getRandomInt(max) {
+		return Math.floor(Math.random() * max);
+	}
+
+	// Shuffle the positional x/y values
+	function shuffleXY(tiles) {
+		for (let tile of tiles) {
+			let other = tiles[getRandomInt(tiles.length)];
+			[tile.x, tile.y, other.x, other.y] = [other.x, other.y, tile.x, tile.y];
+		}
+	}
+
 	// Whenever base changes, update all tiles
 	function baseChanged() {
 		if (!base) return [];
@@ -18,12 +30,16 @@
 				const data = {
 					x: x + 1,
 					y: y + 1,
+					cropX: x + 1,
+					cropY: y + 1,
 					xMax: xMax,
 					yMax: yMax
 				};
 				tiles.push(data);
 			}
 		}
+
+		shuffleXY(tiles);
 		return tiles;
 	}
 </script>

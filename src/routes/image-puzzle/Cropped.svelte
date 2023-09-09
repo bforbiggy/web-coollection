@@ -2,17 +2,17 @@
 	export let image;
 	export let parentData;
 
+	const { x, y, cropX, cropY } = parentData;
+
 	// Calculate style data for the image
-	let x = parentData.x;
-	let y = parentData.y;
 	let cropWidth = base.width / parentData.xMax;
 	let cropHeight = base.height / parentData.yMax;
 
 	// Calculate cutoffs
-	let yLowerCutoff = Math.max(0, y - 1) * cropHeight;
-	let yUpperCutoff = (parentData.yMax - y) * cropHeight;
-	let xLeftCutoff = Math.max(0, x - 1) * cropWidth;
-	let xRightCutoff = (parentData.xMax - x) * cropWidth;
+	let yLowerCutoff = Math.max(0, cropY - 1) * cropHeight;
+	let yUpperCutoff = (parentData.yMax - cropY) * cropHeight;
+	let xLeftCutoff = Math.max(0, cropX - 1) * cropWidth;
+	let xRightCutoff = (parentData.xMax - cropX) * cropWidth;
 
 	// Convert style data to css style text
 	let style = '';

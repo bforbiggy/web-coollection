@@ -4,7 +4,7 @@
 	let image = qrcode;
 
 	let base;
-	$: tiles = baseChanged(base);
+	$: tilesData = baseChanged(base);
 
 	// Whenever base changes, update all tiles
 	function baseChanged() {
@@ -32,7 +32,7 @@
 	<img id="base" src={image} alt="" bind:this={base} />
 
 	<div class="grid">
-		{#each tiles as parentData}
+		{#each tilesData as parentData}
 			<Cropped {image} {parentData} {base} />
 		{/each}
 	</div>
@@ -54,6 +54,8 @@
 
 		.grid {
 			display: grid;
+			grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+			grid-template-rows: repeat(4, 1fr); /* 4 equal rows */
 		}
 	}
 </style>

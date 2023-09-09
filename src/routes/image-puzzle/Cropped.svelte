@@ -16,8 +16,7 @@
 
 	// Convert style data to css style text
 	let style = '';
-	style += `grid-column-start: ${x};`;
-	style += `grid-row-start: ${y};`;
+	style += `grid-area: ${x} / ${y};`;
 	style += `clip-path: inset(${yLowerCutoff}px ${xRightCutoff}px ${yUpperCutoff}px ${xLeftCutoff}px);`;
 	// style += `margin: -${base.height - cropHeight}px -${base.width - cropWidth}px`;
 </script>

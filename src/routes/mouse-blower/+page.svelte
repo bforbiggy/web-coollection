@@ -1,7 +1,13 @@
 <script>
 	import fan from './fan.gif';
+
+	async function canvasClick(event) {
+		const element = event.target;
+		element.requestPointerLock();
+	}
 </script>
 
+<canvas on:click={canvasClick} />
 <div class="container">
 	<div class="image-container">
 		<img src={fan} alt="" />
@@ -10,7 +16,19 @@
 </div>
 
 <style lang="scss">
+	canvas {
+		min-width: 100vw;
+		max-width: 100vw;
+		min-height: 100vh;
+		max-height: 100vh;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		z-index: 999;
+	}
+
 	.container {
+		width: 100vw;
 		height: 100vh;
 		display: flex;
 		justify-content: center;
@@ -41,7 +59,7 @@
 
 		.image-container {
 			display: inline-block;
-			z-index: 999;
+			z-index: 700;
 
 			img {
 				width: 200%;

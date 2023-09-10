@@ -1,10 +1,12 @@
 <script>
-	import fan from './fan.png';
+	import fan from './fan.gif';
 </script>
 
 <div class="container">
+	<div class="image-container">
+		<img src={fan} alt="" />
+	</div>
 	<div class="box" />
-	<img src={fan} alt="" />
 </div>
 
 <style lang="scss">
@@ -17,8 +19,8 @@
 		.box {
 			width: 100vw;
 			height: 400px;
-			transform: translateY(-100px);
 			background-color: lightblue;
+
 			--mask: radial-gradient(
 						56.84px at 50% calc(100% + 43.5px),
 						#0000 calc(99% - 8px),
@@ -37,8 +39,15 @@
 			mask: var(--mask);
 		}
 
-		img {
-			margin-left: 0px;
+		.image-container {
+			display: inline-block;
+			z-index: 999;
+
+			img {
+				width: 200%;
+				height: 200%;
+				background-color: white;
+			}
 		}
 	}
 </style>

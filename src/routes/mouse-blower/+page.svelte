@@ -1,29 +1,93 @@
 <script>
 	import fan from './fan.gif';
+	import cursor from './cursor.png';
+	import { onMount } from 'svelte';
 
+	let width, height;
+
+	let x = 0;
+	let y = 0;
+
+	let cursorElement;
+	let waveElement;
+
+	// Create an infinite loop on component mount
+	onMount(() => {
+		const interval = setInterval(() => {
+			// Keep mouse in bounds
+			if (x < 0) x = 0;
+			if (y < 0) y = 0;
+			if (x > width) x = width;
+			if (y > height) y = height;
+
+			// Perform wind blowing
+			const curRect = cursorElement.getBoundingClientRect();
+			const waveRect = waveElement.getBoundingClientRect();
+			const overlap = !(
+				curRect.right < waveRect.left ||
+				curRect.left > waveRect.right ||
+				curRect.bottom < waveRect.top ||
+				curRect.top > waveRect.bottom
+			);
+			if (overlap) {
+				x += 10;
+			}
+		}, 10);
+		return () => clearInterval(interval);
+	});
+
+	// Track user movement
+	function mouseMove(event) {
+		x += event.movementX;
+		y += event.movementY;
+	}
+
+	// Allow the screen to be locked
 	async function canvasClick(event) {
 		const element = event.target;
 		element.requestPointerLock();
 	}
 </script>
 
-<canvas on:click={canvasClick} />
+<svelte:window bind:innerWidth={width} bind:innerHeight={height} />
+<img
+	class="pointer"
+	bind:this={cursorElement}
+	src={cursor}
+	style="top: {y}px; left: {x}px;"
+	alt=""
+/>
+<canvas on:click={canvasClick} on:mousemove={mouseMove} />
 <div class="container">
 	<div class="image-container">
 		<img src={fan} alt="" />
 	</div>
-	<div class="box" />
+	<div bind:this={waveElement} class="wave" />
 </div>
 
 <style lang="scss">
-	canvas {
+	:global(body) {
 		min-width: 100vw;
 		max-width: 100vw;
 		min-height: 100vh;
 		max-height: 100vh;
+	}
+
+	canvas {
+		width: 100%;
+		height: 100%;
+
 		position: absolute;
 		top: 0px;
 		left: 0px;
+		z-index: 999;
+		cursor: none;
+	}
+
+	.pointer {
+		position: absolute;
+		width: 70px;
+		height: 140;
 		z-index: 999;
 	}
 
@@ -34,7 +98,7 @@
 		justify-content: center;
 		align-items: center;
 
-		.box {
+		.wave {
 			width: 100vw;
 			height: 400px;
 			background-color: lightblue;

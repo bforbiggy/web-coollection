@@ -71,6 +71,8 @@
 		max-width: 100vw;
 		min-height: 100vh;
 		max-height: 100vh;
+		overflow: hidden;
+		cursor: none;
 	}
 
 	canvas {
@@ -81,25 +83,24 @@
 		top: 0px;
 		left: 0px;
 		z-index: 999;
-		cursor: none;
 	}
 
 	.pointer {
 		position: absolute;
-		width: 70px;
-		height: 140;
+		width: 35px;
+		height: 50px;
 		z-index: 999;
 	}
 
 	.container {
-		width: 100vw;
+		width: 100%;
 		height: 100vh;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 
 		.wave {
-			width: 100vw;
+			width: 100%;
 			height: 400px;
 			background-color: lightblue;
 

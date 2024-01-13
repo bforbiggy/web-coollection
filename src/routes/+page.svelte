@@ -14,6 +14,7 @@
 		<a href="/snowflakes">Snowflakes</a>
 		<a href="/uncapped-slider">Uncapped Volume Slider</a>
 		<a href="/watchful-eye">Watchful Eye</a>
+		<a href="/infinite-bloom">Infinite Blooming (UNFINISHED)</a>
 	</div>
 
 	<div class="title">

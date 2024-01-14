@@ -4,6 +4,8 @@ let scene;
 let camera;
 let renderer;
 
+const clock = new THREE.Clock();
+
 function init() {
 	// Initialize scene/camera/renderer
 	scene = new THREE.Scene();
@@ -38,7 +40,9 @@ function setup() {
 			transparent: true,
 		});
 		petals[i] = new THREE.Mesh(geometry, material);
+		petals[i].scale.x = 0;
 		petals[i].scale.y = 0;
+		petals[i].rotation.z = 45;
 
 		scene.add(petals[i]);
 	}
@@ -46,9 +50,14 @@ function setup() {
 
 function play() {
 	requestAnimationFrame(play);
+	const deltaTime = clock.getDelta();
 
-	petals[0].scale.y += 0.001;
-	petals[0].scale.y = Math.min(petals[0].scale.y, 1);
+	for (const petal of petals) {
+		petal.scale.x += 0.6 * deltaTime;
+		petal.scale.x = Math.min(petal.scale.x, 1);
+		petal.scale.y += 0.3 * deltaTime;
+		petal.scale.y = Math.min(petal.scale.y, 1);
+	}
 
 	renderer.render(scene, camera);
 }

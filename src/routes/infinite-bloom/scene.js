@@ -23,29 +23,34 @@ function init() {
 	play();
 }
 
-let petals = [];
+
+let petalLoader;
+let petalTexture;
 function setup() {
 	// Scene setup
 	camera.position.z = 5;
 
 	// Load petal texture
-	const loader = new THREE.TextureLoader();
-	const texture = loader.load("src/routes/infinite-bloom/petal.png");
+	petalLoader = new THREE.TextureLoader();
+	petalTexture = petalLoader.load("src/routes/infinite-bloom/petal.png");
 
 	// Generate petals
 	for (let i = 0; i < 1; i++) {
-		const geometry = new THREE.BoxGeometry(1, 1, 1);
-		const material = new THREE.MeshBasicMaterial({
-			map: texture,
-			transparent: true,
-		});
-		petals[i] = new THREE.Mesh(geometry, material);
-		petals[i].scale.x = 0;
-		petals[i].scale.y = 0;
-		petals[i].rotation.z = 45;
-
-		scene.add(petals[i]);
+		summonPetal();
 	}
+}
+
+function summonPetal() {
+	const geometry = new THREE.BoxGeometry(1, 1, 1);
+	const material = new THREE.MeshBasicMaterial({
+		map: petalTexture,
+		transparent: true,
+	});
+	const petal = new THREE.Mesh(geometry, material);
+	petal.scale.x = 0;
+	petal.scale.y = 0;
+	petal.rotation.z = 45;
+	scene.add(petal);
 }
 
 function play() {

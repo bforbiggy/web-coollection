@@ -9,6 +9,7 @@
 		<a href="/image-puzzle">Image Puzzle</a>
 		<a href="/crashwebsite">Website Crasher</a>
 		<a href="/liquidfollow">Following Liquid</a>
+		<a href="/monkey-typewriter">Infinite Monkeys At A Typewriter</a>
 		<a href="/mouse-blower">Mouse Blower</a>
 		<a href="/parallax-image-gallery">Parallax Image Gallery</a>
 		<a href="/snowflakes">Snowflakes</a>
